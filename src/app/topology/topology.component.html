@@ -1,0 +1,32 @@
+<div class="container">
+  <ng-container *ngFor="let level of topologyData; index as i">
+    <div class="flex">
+      <div class="level">
+        <ng-container *ngFor="let box of level">
+          <div
+            class="flex"
+            *ngIf="!box.isLine"
+            #boxDiv
+            [style]="setBoxDiv(boxDiv, box)"
+          >
+            <div class="horizontal-line" *ngIf="i != 0"></div>
+            <div class="box">
+              {{ box.name }}
+            </div>
+            <div
+              class="horizontal-line"
+              *ngIf="i != topologyData.length - 1"
+            ></div>
+          </div>
+        </ng-container>
+      </div>
+      <svg
+        *ngIf="i != topologyData.length - 1"
+        class="vertical-line"
+        [style.height.px]="getLineHeight(topologyData, i, verticalLineDiv)"
+        #verticalLineDiv
+      >
+      </svg>
+    </div>
+  </ng-container>
+</div>
